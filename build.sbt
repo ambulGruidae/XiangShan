@@ -1,5 +1,5 @@
-val chiselVersion = "3.4.3"
-scalaVersion := "2.12.10"
+val chiselVersion = "7.0.0-M2+528-0c2c05cf-SNAPSHOT"
+scalaVersion := "2.13.16"
 
 lazy val commonSettings = Seq(
   scalacOptions ++= Seq("-deprecation","-unchecked","-Xsource:2.11"),
@@ -15,8 +15,8 @@ lazy val commonSettings = Seq(
 )
 
 lazy val chiselSettings = Seq(
-  libraryDependencies ++= Seq("edu.berkeley.cs" %% "chisel3" % chiselVersion),
-  addCompilerPlugin("edu.berkeley.cs" % "chisel3-plugin" % chiselVersion cross CrossVersion.full)
+  libraryDependencies ++= Seq("org.chipsalliance" %% "chisel3" % chiselVersion),
+  addCompilerPlugin("org.chipsalliance" % "chisel3-plugin" % chiselVersion cross CrossVersion.full)
 )
 
 lazy val `api-config-chipsalliance` = (project in file("api-config-chipsalliance/build-rules/sbt"))
