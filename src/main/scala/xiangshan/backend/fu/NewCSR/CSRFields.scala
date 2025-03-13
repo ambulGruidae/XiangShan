@@ -323,6 +323,13 @@ class CSREnumType(
 
   // override cloneType to make ValidIO etc function return CSREnumType not EnumType
   override def cloneType: this.type = factory.asInstanceOf[CSREnum].makeType.asInstanceOf[this.type].setRwType(this.rwType)
+
+    // override _fromUInt to make Mux1H etc function get correct return type CSREnumType not EnumType
+  override def _fromUInt(that: UInt)(implicit sourceInfo: experimental.SourceInfo): Data = {
+    val result = Wire(factory.asInstanceOf[CSREnum].makeType.asInstanceOf[this.type].setRwType(this.rwType))
+    result := that
+    result
+  }
 }
 
 class CSREnum extends ChiselEnum {
